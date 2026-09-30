@@ -1,0 +1,10 @@
+# Local development override.
+#
+# `dex-protocol` is declared as a git dependency so the published commit is the
+# real source of truth. While the two repositories are developed side by side,
+# this substitutes the sibling checkout, so a protocol change shows up in the
+# CLI's build immediately instead of after a push and a fetch.
+#
+# Delete this file to build against github.com/dex-harness/dex.git.
+[patch."https://github.com/dex-harness/dex.git"]
+dex-protocol = { path = "../dex-runtime/crates/dex-protocol" }

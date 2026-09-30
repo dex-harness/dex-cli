@@ -1,0 +1,21 @@
+[package]
+name = "dex-cli"
+description = "Terminal frontend for DEX. Presentation only; runs no repository operations."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "dex"
+path = "src/main.rs"
+
+[dependencies]
+dex-client = { path = "../dex-client" }
+dex-protocol = { workspace = true }
+
+anyhow = { workspace = true }
+clap = { workspace = true }
+crossterm = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }

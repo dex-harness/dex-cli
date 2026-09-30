@@ -1,0 +1,36 @@
+[workspace]
+resolver = "2"
+members = ["crates/dex-client", "crates/dex-cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+license = "MIT OR Apache-2.0"
+
+[workspace.dependencies]
+# dex-protocol is the single source of truth for the wire format and lives in
+# the runtime repository. Depending on it by git URL rather than duplicating
+# the types here is what keeps the two repositories honest about the protocol.
+#
+# For local development the sibling checkout is substituted via the [patch] in
+# .cargo/config.toml, so a protocol change is picked up without a push. Delete
+# that file to build against the published commit.
+dex-protocol = { git = "https://github.com/dex-harness/dex.git" }
+
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.28"
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = [
+    "rt-multi-thread",
+    "macros",
+    "net",
+    "io-util",
+    "sync",
+    "time",
+] }
+
+[profile.dev]
+debug = 0
