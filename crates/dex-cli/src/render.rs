@@ -67,9 +67,6 @@ impl Style {
     pub fn magenta(&self, t: &str) -> String {
         self.paint("35", t)
     }
-    pub fn cyan(&self, t: &str) -> String {
-        self.paint("36", t)
-    }
 }
 
 /// Render one event. Returns the text to print, or `None` to print nothing.
@@ -109,9 +106,12 @@ pub fn render(style: &Style, event: &Event) -> Option<String> {
             } else {
                 format!(" {args}")
             };
+            // A neutral marker: whether the call was permitted is reported by
+            // the finish event, and a tick here would read as "it worked" even
+            // when the very next line says it was refused.
             Some(format!(
                 "  {} {}{}",
-                style.cyan("\u{2713}"),
+                style.dim("\u{00b7}"),
                 style.dim(capability),
                 style.dim(&detail)
             ))
