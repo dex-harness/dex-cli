@@ -19,8 +19,11 @@ license = "MIT OR Apache-2.0"
 dex-protocol = { git = "https://github.com/dex-harness/dex.git" }
 
 anyhow = "1"
+futures = "0.3"
 clap = { version = "4", features = ["derive"] }
-crossterm = "0.28"
+postcard = { version = "1", features = ["use-std"] }
+crossterm = { version = "0.28", features = ["event-stream"] }
+serde = { version = "1" }
 serde_json = "1"
 thiserror = "2"
 tokio = { version = "1", features = [
